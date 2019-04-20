@@ -1,0 +1,102 @@
+2019-04-20 13:02:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ELEMENT" not found; SQL statement:
+DROP TABLE ELEMENT [42102-190]
+2019-04-20 13:02:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "POSSEDE" not found; SQL statement:
+DROP TABLE POSSEDE [42102-190]
+2019-04-20 13:02:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TAG" not found; SQL statement:
+DROP TABLE TAG [42102-190]
+2019-04-20 16:32:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ELEMENT" already exists; SQL statement:
+CREATE TABLE ELEMENT (id INTEGER not NULL, idListe INTEGER not NULL, dateCreation DATE, dateDerModif DATE, titre VARCHAR(255), description VARCHAR(10000), etat INTEGER not NULL, PRIMARY KEY ( id ), ); [42101-190]
+2019-04-20 16:32:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "POSSEDE" already exists; SQL statement:
+CREATE TABLE POSSEDE (id INTEGER not NULL, idListe INTEGER not NULL, PRIMARY KEY ( id ), FOREIGN KEY ( idListe ) REFERENCES ELEMENT ( id ),FOREIGN KEY ( id ) REFERENCES ELEMENT ( id )); [42101-190]
+2019-04-20 16:32:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TAG" already exists; SQL statement:
+CREATE TABLE TAG (id INTEGER not NULL, tag VARCHAR(255), FOREIGN KEY ( id ) REFERENCES ELEMENT ( id )); [42101-190]
+2019-04-20 16:34:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "ELEMENT.IDLISTE" not found; SQL statement:
+SELECT * FROM POSSEDE WHERE ELEMENT.idliste = ? [42122-190]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:178)
+	at org.h2.command.dml.Select.prepare(Select.java:838)
+	at org.h2.command.Parser.prepareCommand(Parser.java:246)
+	at org.h2.engine.Session.prepareLocal(Session.java:460)
+	at org.h2.engine.Session.prepareCommand(Session.java:402)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:72)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:1122)
+	at org.sql2o.Query.<init>(Query.java:62)
+	at org.sql2o.Connection.createQuery(Connection.java:83)
+	at org.sql2o.Connection.createQuery(Connection.java:70)
+	at org.sql2o.Connection.createQuery(Connection.java:102)
+	at DAO.UnSql2oModel.deleteElement(UnSql2oModel.java:170)
+	at controleur.MainControleur.lambda$main$18(MainControleur.java:439)
+	at spark.RouteImpl$1.handle(RouteImpl.java:72)
+	at spark.http.matching.Routes.execute(Routes.java:61)
+	at spark.http.matching.MatcherFilter.doFilter(MatcherFilter.java:130)
+	at spark.embeddedserver.jetty.JettyHandler.doHandle(JettyHandler.java:50)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1568)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:530)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:347)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:256)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:382)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:708)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:626)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2019-04-20 16:34:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "ELEMENT.IDLISTE" not found; SQL statement:
+SELECT * FROM POSSEDE WHERE ELEMENT.idliste = ? [42122-190]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.expression.Comparison.optimize(Comparison.java:178)
+	at org.h2.command.dml.Select.prepare(Select.java:838)
+	at org.h2.command.Parser.prepareCommand(Parser.java:246)
+	at org.h2.engine.Session.prepareLocal(Session.java:460)
+	at org.h2.engine.Session.prepareCommand(Session.java:402)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1188)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:72)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:276)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:1122)
+	at org.sql2o.Query.<init>(Query.java:62)
+	at org.sql2o.Connection.createQuery(Connection.java:83)
+	at org.sql2o.Connection.createQuery(Connection.java:70)
+	at org.sql2o.Connection.createQuery(Connection.java:102)
+	at DAO.UnSql2oModel.deleteElement(UnSql2oModel.java:170)
+	at controleur.MainControleur.lambda$main$18(MainControleur.java:439)
+	at spark.RouteImpl$1.handle(RouteImpl.java:72)
+	at spark.http.matching.Routes.execute(Routes.java:61)
+	at spark.http.matching.MatcherFilter.doFilter(MatcherFilter.java:130)
+	at spark.embeddedserver.jetty.JettyHandler.doHandle(JettyHandler.java:50)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1568)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:530)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:347)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:256)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:382)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:708)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:626)
+	at java.base/java.lang.Thread.run(Thread.java:844)
