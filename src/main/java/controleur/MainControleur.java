@@ -7,7 +7,6 @@ import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 import model.AListe;
 import model.LaListe;
-import model.Tag;
 import org.apache.log4j.BasicConfigurator;
 
 import java.io.File;
@@ -66,19 +65,12 @@ public class MainControleur {
         int minThreads = 1;
         int timeOutMillis = 30000;
         threadPool(maxThreads, minThreads, timeOutMillis);
-        //Initialisation
-        //awaitInitialization(); // Wait for server to be initialized
-        //SSL/HTTPS
-        //String keyStoreLocation = "javax.net.ssl.keyStore";//"deploy/keystore.jks";
-        //String keyStorePassword = "password";
-        //secure(keyStoreLocation, keyStorePassword, null, null);
 
-        // root is 'src/main/resources', so put files in 'src/main/resources/public'
+
         staticFiles.expireTime(600); // ten minutes
 
-        configuration = new Configuration(Configuration.VERSION_2_3_19);//new Configuration(new Version(2, 3, 0));
-        configuration.setDirectoryForTemplateLoading(new File("src/main/ressources"));//MainControleur.class, "/"//new File("src/main/ressources/")
-        //configuration.setClassForTemplateLoading(MainControleur.class, "src/main/ressources");
+        configuration = new Configuration(Configuration.VERSION_2_3_19);
+        configuration.setDirectoryForTemplateLoading(new File("src/main/ressources"));
         configuration.setDefaultEncoding("UTF-8");
         configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         configuration.setLogTemplateExceptions(false);

@@ -1,34 +1,27 @@
 package main;
 
-import DAO.UnSql2oModel;
+import DAO.DAO;
 import controleur.MainControleur;
 import model.LaListe;
-import model.UnElement;
 import org.h2.jdbcx.JdbcDataSource;
 
 import javax.sql.DataSource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * initialisation base de donné
- */
+
 public class Main {
-    /**
-     *
-     * @param args
-     * @throws Exception
-     */
+    private  static final String url = "jdbc:h2:./listout";
     public static void main(String[] args) throws Exception {
-        String url = "jdbc:h2:./listout";
+
         JdbcDataSource datasource = new JdbcDataSource();
         datasource.setURL(url);
         DataSource ds = datasource;
-        UnSql2oModel model = new UnSql2oModel(ds);
+        DAO model = new DAO(ds);
 
-        model.dropTable("ELEMENT");
-        model.dropTable("POSSEDE");
-        model.dropTable("TAG");
+        model.dropTable("ToDoList");
+        model.dropTable("ToDo");
+        model.dropTable("Tag");
 
         model.createTableElement();
         model.createTablePossede();

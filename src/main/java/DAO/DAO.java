@@ -1,8 +1,6 @@
 package DAO;
 
 import model.AListe;
-import model.Tag;
-import model.UnElement;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.data.Row;
@@ -19,7 +17,7 @@ import java.util.logging.Logger;
 /**
  *
  */
-public class UnSql2oModel {//MANAGER DAO ?
+public class DAO {//MANAGER DAO ?
     //
     private static final Logger LOGGER = Logger.getLogger(UnSql2oModel.class.getName());
     //
@@ -29,7 +27,7 @@ public class UnSql2oModel {//MANAGER DAO ?
      *
      * @param ds
      */
-    public UnSql2oModel(DataSource ds){
+    public DAO(DataSource ds){
         this.sql2o = new Sql2o(ds);
         //this.sql2o = sql2o;
     }
@@ -404,4 +402,32 @@ public class UnSql2oModel {//MANAGER DAO ?
             LOGGER.log(Level.SEVERE," {0}",e);
         }
     }
+
+
+
+    public static List<AListe> rechercheFils(UnSql2oModel sql, List<AListe> liste,int id){
+        List<AListe> l = new ArrayList<>();
+        for(int i : sql.getAllPossede(id)){
+            for (AListe a: liste) {
+                if(a.getId() == i){
+                    l.add(a);
+                }
+            }
+        }
+        return l;
+    }
+
+    public static List<AListe> recherchePere(UnSql2oModel sql, List<AListe> liste, int id){
+        List<AListe> l = new ArrayList<>();
+        for(int i : sql.getAllPossedant(id)){
+            for (AListe a: liste) {
+                if(a.getId() == i){
+                    l.add(a);
+                }
+            }
+            //l.add(liste.get(liste.indexOf(i)));
+        }
+        return l;
+    }
+
 }
